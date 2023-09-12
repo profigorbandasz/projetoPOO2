@@ -86,6 +86,11 @@ public class FRMenu extends javax.swing.JFrame {
         jMenu1.add(jMenuItem2);
 
         miSair.setText("Sair");
+        miSair.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                miSairActionPerformed(evt);
+            }
+        });
         jMenu1.add(miSair);
 
         Menu.add(jMenu1);
@@ -129,6 +134,10 @@ public class FRMenu extends javax.swing.JFrame {
     private void miCadUsuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_miCadUsuarioActionPerformed
         new FRCadUsu().setVisible(true);
     }//GEN-LAST:event_miCadUsuarioActionPerformed
+
+    private void miSairActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_miSairActionPerformed
+        this.dispose();
+    }//GEN-LAST:event_miSairActionPerformed
 
     /**
      * @param args the command line arguments
