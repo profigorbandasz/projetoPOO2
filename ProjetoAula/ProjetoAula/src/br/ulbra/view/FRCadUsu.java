@@ -5,6 +5,9 @@
  */
 package br.ulbra.view;
 
+import br.ulbra.controller.UsuarioController;
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author Jeferson Leon
@@ -46,7 +49,7 @@ public class FRCadUsu extends javax.swing.JFrame {
         txtSenha = new javax.swing.JPasswordField();
         txtRSenha = new javax.swing.JPasswordField();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
         jPanel1.setBackground(new java.awt.Color(0, 102, 102));
 
@@ -84,9 +87,19 @@ public class FRCadUsu extends javax.swing.JFrame {
 
         btCancelar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/ulbra/img/cancelar.png"))); // NOI18N
         btCancelar.setText("CANCELAR");
+        btCancelar.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btCancelarMouseClicked(evt);
+            }
+        });
 
         btSalvar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/ulbra/img/save.png"))); // NOI18N
         btSalvar.setText("SALVAR");
+        btSalvar.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btSalvarMouseClicked(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -178,6 +191,67 @@ public class FRCadUsu extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void btCancelarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btCancelarMouseClicked
+        this.dispose();
+    }//GEN-LAST:event_btCancelarMouseClicked
+
+    private boolean verificarCampos(){
+        if(txtNome.getText().equals("")){
+            JOptionPane.showMessageDialog(null,"Campo 'Nome' em branco");
+            return false;
+        }
+        
+        if(!txtNome.getText().matches("^[\\p{L} ]+$")){
+            JOptionPane.showMessageDialog(null,
+                    "Campo 'Nome' possui caracteres inválidos");
+            return false;
+        }
+        
+        if(txtEmail.getText().equals("")){
+            JOptionPane.showMessageDialog(null,"Campo 'Email' em branco");
+            return false;
+        }
+        if(!txtEmail.getText().matches("^[a-zA-Z._]+@[a-zA-Z._]+.[a-zA-Z._]+$")){
+            JOptionPane.showMessageDialog(null,
+                    "Campo 'Email' possui formato inválido");
+            return false;
+        }
+        
+        if(!txtDtNasc.getText().matches("^[0-9]{2}/[0-9]{2}/[0-9]{4}$")){
+            JOptionPane.showMessageDialog(null,
+                    "Campo 'Data Nascimento' possui formato inválido."
+                    +" Ex: 01/01/2000");
+            return false;
+        }
+        
+        char[] senha = txtSenha.getPassword();
+        if(new String(senha).length() < 8){
+            JOptionPane.showMessageDialog(null,
+                    "Campo 'Senha' deve ser maior que 8 caracteres");
+            return false;
+        }
+        
+        if(!new String(senha).equals(new String(txtRSenha.getPassword()))){
+            JOptionPane.showMessageDialog(null,
+                    "As senhas não são iguais");
+            return false;
+        }
+        
+        return true;
+    }
+    
+    private void btSalvarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btSalvarMouseClicked
+        if(!verificarCampos()){
+            return;
+        }
+        
+        //SALVAR
+        UsuarioController controller = new UsuarioController();
+        //if(controller.){
+            
+        //};
+    }//GEN-LAST:event_btSalvarMouseClicked
 
     /**
      * @param args the command line arguments
