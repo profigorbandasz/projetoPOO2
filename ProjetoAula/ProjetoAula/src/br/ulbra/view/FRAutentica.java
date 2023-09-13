@@ -6,6 +6,7 @@
 package br.ulbra.view;
 
 import br.ulbra.controller.UsuarioController;
+import java.awt.event.KeyEvent;
 
 
 /**
@@ -55,6 +56,12 @@ public class FRAutentica extends javax.swing.JFrame {
         jLabel3.setText("E-MAIL");
 
         jLabel4.setText("SENHA");
+
+        txtSenha.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                txtSenhaKeyPressed(evt);
+            }
+        });
 
         btEntrar.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
         btEntrar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/ulbra/img/open.png"))); // NOI18N
@@ -118,9 +125,9 @@ public class FRAutentica extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
-    private void btEntrarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btEntrarMouseClicked
-        UsuarioController controller = new UsuarioController();
+    
+    private void logar(){
+       UsuarioController controller = new UsuarioController();
         char[] senha = txtSenha.getPassword();
                 
             
@@ -128,8 +135,18 @@ public class FRAutentica extends javax.swing.JFrame {
         if(controller.autenticar(txtEmail.getText(), new String(senha))){
             this.dispose();
             new FRMenu().setVisible(true);
-        }
+        } 
+    }
+    
+    private void btEntrarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btEntrarMouseClicked
+       logar(); 
     }//GEN-LAST:event_btEntrarMouseClicked
+
+    private void txtSenhaKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtSenhaKeyPressed
+        if(evt.getKeyCode() == KeyEvent.VK_ENTER){
+           logar();
+        } 
+    }//GEN-LAST:event_txtSenhaKeyPressed
 
     /**
      * @param args the command line arguments

@@ -58,7 +58,7 @@ public class FRMenu extends javax.swing.JFrame {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(131, 131, 131)
                 .addComponent(jLabel1)
-                .addContainerGap(136, Short.MAX_VALUE))
+                .addContainerGap(129, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -99,6 +99,11 @@ public class FRMenu extends javax.swing.JFrame {
         jMenu2.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
 
         miConUsuario.setText("Usuarios");
+        miConUsuario.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                miConUsuarioActionPerformed(evt);
+            }
+        });
         jMenu2.add(miConUsuario);
 
         jMenuItem5.setText("???");
@@ -138,6 +143,10 @@ public class FRMenu extends javax.swing.JFrame {
     private void miSairActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_miSairActionPerformed
         this.dispose();
     }//GEN-LAST:event_miSairActionPerformed
+
+    private void miConUsuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_miConUsuarioActionPerformed
+        new FRConUsu().setVisible(true);
+    }//GEN-LAST:event_miConUsuarioActionPerformed
 
     /**
      * @param args the command line arguments
