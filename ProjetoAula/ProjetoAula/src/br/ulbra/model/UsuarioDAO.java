@@ -94,4 +94,40 @@ public class UsuarioDAO {
         return usuarios;
 
     }
+    
+    public List<Usuario> readForDesc(String desc) {
+        String sql = "SELECT * FROM tbusuario WHERE nomeusu LIKE ?";
+        GerenciadorConexao gerenciador = GerenciadorConexao.getInstancia();
+        Connection con = gerenciador.getConexao();
+        PreparedStatement stmt = null;
+        ResultSet rs = null;
+        List<Usuario> usuarios = new ArrayList<>();
+
+        try {
+            stmt = con.prepareStatement(sql);
+            stmt.setString(1, "%"+desc+"%");
+            
+            rs = stmt.executeQuery();
+
+            while (rs.next()) {
+
+                Usuario usuario = new Usuario();
+
+                usuario.setPkUsuario(rs.getInt("pkusuario"));
+                usuario.setNomeUsu(rs.getString("nomeusu"));
+                usuario.setEmailUsu(rs.getString("emailusu"));
+                usuario.setSenhaUsu(rs.getString("senhausu"));
+                usuario.setDataNascUsu(rs.getString("datanascusu"));
+                usuario.setAtivoUsu(rs.getInt("ativousu"));
+                usuarios.add(usuario);
+            }
+
+        } catch (SQLException ex) {
+            Logger.getLogger(UsuarioDAO.class.getName()).log(Level.SEVERE, null, ex);
+        } finally {
+            GerenciadorConexao.closeConnection(con, stmt, rs);
+        }
+
+        return usuarios;
+    }
 }

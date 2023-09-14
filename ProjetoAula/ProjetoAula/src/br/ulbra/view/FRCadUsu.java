@@ -6,6 +6,7 @@
 package br.ulbra.view;
 
 import br.ulbra.controller.UsuarioController;
+import br.ulbra.utils.Utils;
 import javax.swing.JOptionPane;
 
 /**
@@ -246,11 +247,12 @@ public class FRCadUsu extends javax.swing.JFrame {
             return;
         }
         
-        //SALVAR
         UsuarioController controller = new UsuarioController();
-        //if(controller.){
-            
-        //};
+        String senha = new String(txtSenha.getPassword());
+        if(controller.adicionarUsuario(txtNome.getText(), txtEmail.getText(), senha, 
+                txtDtNasc.getText(), Utils.salvarBoolean(chkAtivo.isSelected()))){
+            this.dispose();
+        };
     }//GEN-LAST:event_btSalvarMouseClicked
 
     /**
