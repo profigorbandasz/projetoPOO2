@@ -106,6 +106,11 @@ public class FRUPDUsu extends javax.swing.JFrame {
         btExcluir.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         btExcluir.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/ulbra/img/trash.png"))); // NOI18N
         btExcluir.setText("Excluir");
+        btExcluir.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btExcluirMouseClicked(evt);
+            }
+        });
 
         btVoltar.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         btVoltar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/ulbra/img/cancelar.png"))); // NOI18N
@@ -238,6 +243,7 @@ public class FRUPDUsu extends javax.swing.JFrame {
         txtEmail.setText(usu.getEmailUsu());
         txtDataNascimento.setText(usu.getDataNascUsu());
         txtSenha.setText(usu.getSenhaUsu());
+        txtRSenha.setText(usu.getSenhaUsu());
         chkAtivo.setSelected(usu.isAtivoUsu() == 1);
     }//GEN-LAST:event_formWindowActivated
 
@@ -308,6 +314,19 @@ public class FRUPDUsu extends javax.swing.JFrame {
             this.dispose();
         };
     }//GEN-LAST:event_btAlterarMouseClicked
+
+    private void btExcluirMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btExcluirMouseClicked
+        int resposta = JOptionPane.showConfirmDialog(null, "Deseja excluir o usuário?", 
+                "Confirmação", JOptionPane.YES_NO_OPTION);
+
+        if (resposta == JOptionPane.YES_OPTION) {
+            UsuarioController controller = new UsuarioController();
+            if(controller.excluirUsuario(pkUsuario)){
+                this.dispose();
+            };
+        }
+        
+    }//GEN-LAST:event_btExcluirMouseClicked
 
     /**
      * @param args the command line arguments
