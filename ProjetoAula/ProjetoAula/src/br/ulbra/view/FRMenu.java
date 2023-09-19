@@ -116,6 +116,11 @@ public class FRMenu extends javax.swing.JFrame {
 
         miSobre.setBackground(new java.awt.Color(255, 51, 0));
         miSobre.setText("Sobre");
+        miSobre.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                miSobreActionPerformed(evt);
+            }
+        });
         jMenu4.add(miSobre);
 
         Menu.add(jMenu4);
@@ -137,7 +142,7 @@ public class FRMenu extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void miCadUsuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_miCadUsuarioActionPerformed
-        new FRCadUsu().setVisible(true);
+        new FRCadUsu(this, rootPaneCheckingEnabled).setVisible(true);
     }//GEN-LAST:event_miCadUsuarioActionPerformed
 
     private void miSairActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_miSairActionPerformed
@@ -145,8 +150,12 @@ public class FRMenu extends javax.swing.JFrame {
     }//GEN-LAST:event_miSairActionPerformed
 
     private void miConUsuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_miConUsuarioActionPerformed
-        new FRConUsu().setVisible(true);
+        new FRConUsu(this, rootPaneCheckingEnabled).setVisible(true);
     }//GEN-LAST:event_miConUsuarioActionPerformed
+
+    private void miSobreActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_miSobreActionPerformed
+        new FRSobre(this, rootPaneCheckingEnabled).setVisible(true);
+    }//GEN-LAST:event_miSobreActionPerformed
 
     /**
      * @param args the command line arguments

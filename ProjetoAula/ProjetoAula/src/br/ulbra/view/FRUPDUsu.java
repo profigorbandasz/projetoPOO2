@@ -12,18 +12,19 @@ import javax.swing.JOptionPane;
 
 /**
  *
- * @author Administrador
+ * @author aluno.saolucas
  */
-public class FRUPDUsu extends javax.swing.JFrame {
+public class FRUPDUsu extends javax.swing.JDialog {
     private int pkUsuario;
     
     public void setPkUsuario(int pk){
         this.pkUsuario = pk;
     }
     /**
-     * Creates new form FRUPDUsu
+     * Creates new form FRUPDUsu_
      */
-    public FRUPDUsu() {
+    public FRUPDUsu(java.awt.Frame parent, boolean modal) {
+        super(parent, modal);
         initComponents();
         this.setLocationRelativeTo(null);
     }
@@ -59,11 +60,6 @@ public class FRUPDUsu extends javax.swing.JFrame {
         jLabel9 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
-        addWindowListener(new java.awt.event.WindowAdapter() {
-            public void windowActivated(java.awt.event.WindowEvent evt) {
-                formWindowActivated(evt);
-            }
-        });
 
         jPanel1.setBackground(new java.awt.Color(0, 102, 102));
 
@@ -172,7 +168,7 @@ public class FRUPDUsu extends javax.swing.JFrame {
                                 .addComponent(txtSenha, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 409, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addComponent(jLabel9)
                             .addComponent(txtRSenha, javax.swing.GroupLayout.PREFERRED_SIZE, 409, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addContainerGap(42, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -233,24 +229,6 @@ public class FRUPDUsu extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void formWindowActivated(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowActivated
-        UsuarioController controller = new UsuarioController();
-        Usuario usu = controller.readForPk(pkUsuario);
-        
-        String codigo = String.valueOf(usu.getPkUsuario());
-        txtCodigo.setText(codigo);
-        txtNome.setText(usu.getNomeUsu());
-        txtEmail.setText(usu.getEmailUsu());
-        txtDataNascimento.setText(usu.getDataNascUsu());
-        txtSenha.setText(usu.getSenhaUsu());
-        txtRSenha.setText(usu.getSenhaUsu());
-        chkAtivo.setSelected(usu.isAtivoUsu() == 1);
-    }//GEN-LAST:event_formWindowActivated
-
-    private void btVoltarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btVoltarMouseClicked
-        this.dispose();
-    }//GEN-LAST:event_btVoltarMouseClicked
-
     private boolean verificarCampos(){
         if(txtNome.getText().equals("")){
             JOptionPane.showMessageDialog(null,"Campo 'Nome' em branco");
@@ -300,7 +278,7 @@ public class FRUPDUsu extends javax.swing.JFrame {
         if(!verificarCampos()){
             return;
         }
-        
+
         UsuarioController controller = new UsuarioController();
         String senha = new String(txtSenha.getPassword());
         Usuario usuario = new Usuario();
@@ -316,8 +294,8 @@ public class FRUPDUsu extends javax.swing.JFrame {
     }//GEN-LAST:event_btAlterarMouseClicked
 
     private void btExcluirMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btExcluirMouseClicked
-        int resposta = JOptionPane.showConfirmDialog(null, "Deseja excluir o usuário?", 
-                "Confirmação", JOptionPane.YES_NO_OPTION);
+        int resposta = JOptionPane.showConfirmDialog(null, "Deseja excluir o usuário?",
+            "Confirmação", JOptionPane.YES_NO_OPTION);
 
         if (resposta == JOptionPane.YES_OPTION) {
             UsuarioController controller = new UsuarioController();
@@ -325,8 +303,12 @@ public class FRUPDUsu extends javax.swing.JFrame {
                 this.dispose();
             };
         }
-        
+
     }//GEN-LAST:event_btExcluirMouseClicked
+
+    private void btVoltarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btVoltarMouseClicked
+        this.dispose();
+    }//GEN-LAST:event_btVoltarMouseClicked
 
     /**
      * @param args the command line arguments
@@ -354,11 +336,19 @@ public class FRUPDUsu extends javax.swing.JFrame {
             java.util.logging.Logger.getLogger(FRUPDUsu.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
+        //</editor-fold>
 
-        /* Create and display the form */
+        /* Create and display the dialog */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new FRUPDUsu().setVisible(true);
+                FRUPDUsu dialog = new FRUPDUsu(new javax.swing.JFrame(), true);
+                dialog.addWindowListener(new java.awt.event.WindowAdapter() {
+                    @Override
+                    public void windowClosing(java.awt.event.WindowEvent e) {
+                        System.exit(0);
+                    }
+                });
+                dialog.setVisible(true);
             }
         });
     }
