@@ -3,11 +3,12 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/aluno.saolucas/Documents/GitHub/projetoPOO2/ProjetoAula/ProjetoAula/src/br/ulbra/controller/UsuarioController.java</file>
-            <file>file:/C:/Users/aluno.saolucas/Documents/GitHub/projetoPOO2/ProjetoAula/ProjetoAula/src/br/ulbra/view/FRConUsu.java</file>
-            <file>file:/C:/Users/aluno.saolucas/Documents/GitHub/projetoPOO2/ProjetoAula/ProjetoAula/src/br/ulbra/view/FRUPDUsu.java</file>
-            <file>file:/C:/Users/aluno.saolucas/Documents/GitHub/projetoPOO2/ProjetoAula/ProjetoAula/src/br/ulbra/view/FRSobre.java</file>
-            <file>file:/C:/Users/aluno.saolucas/Documents/GitHub/projetoPOO2/ProjetoAula/ProjetoAula/src/br/ulbra/model/UsuarioDAO.java</file>
+            <file>file:/C:/Users/s.lucas/Documents/GitHub/projetoPOO2/ProjetoAula/ProjetoAula/src/br/ulbra/view/FRCadUsu.java</file>
+            <file>file:/C:/Users/s.lucas/Documents/GitHub/projetoPOO2/ProjetoAula/ProjetoAula/src/br/ulbra/view/FRConUsu.java</file>
+            <file>file:/C:/Users/s.lucas/Documents/GitHub/projetoPOO2/ProjetoAula/ProjetoAula/src/br/ulbra/controller/UsuarioController.java</file>
+            <file>file:/C:/Users/s.lucas/Documents/GitHub/projetoPOO2/ProjetoAula/ProjetoAula/src/br/ulbra/model/UsuarioDAO.java</file>
+            <file>file:/C:/Users/s.lucas/Documents/GitHub/projetoPOO2/ProjetoAula/ProjetoAula/src/br/ulbra/model/GerenciadorConexao.java</file>
+            <file>file:/C:/Users/s.lucas/Documents/GitHub/projetoPOO2/ProjetoAula/ProjetoAula/src/br/ulbra/view/FRUPDUsu.java</file>
         </group>
     </open-files>
 </project-private>
