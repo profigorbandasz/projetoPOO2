@@ -7,6 +7,11 @@ package br.ulbra.view;
 
 import br.ulbra.controller.UsuarioController;
 import br.ulbra.utils.Utils;
+import java.awt.Image;
+import java.io.File;
+import javax.swing.Icon;
+import javax.swing.ImageIcon;
+import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
 
 /**
@@ -50,6 +55,8 @@ public class FRCadUsu extends javax.swing.JDialog {
         btSalvar = new javax.swing.JButton();
         txtSenha = new javax.swing.JPasswordField();
         txtRSenha = new javax.swing.JPasswordField();
+        btEscolherImagem = new javax.swing.JButton();
+        lbFoto = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("[ULBRA] - Cadastro de Usuários");
@@ -103,6 +110,21 @@ public class FRCadUsu extends javax.swing.JDialog {
                 btSalvarMouseClicked(evt);
             }
         });
+        btSalvar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btSalvarActionPerformed(evt);
+            }
+        });
+
+        btEscolherImagem.setText("Escolher imagem");
+        btEscolherImagem.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btEscolherImagemMouseClicked(evt);
+            }
+        });
+
+        lbFoto.setBackground(new java.awt.Color(255, 255, 255));
+        lbFoto.setForeground(new java.awt.Color(255, 255, 255));
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -116,32 +138,40 @@ public class FRCadUsu extends javax.swing.JDialog {
                 .addGap(84, 84, 84))
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(16, 16, 16)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jLabel8)
-                    .addComponent(jLabel7)
-                    .addComponent(jLabel4)
-                    .addComponent(jLabel3)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(jLabel1)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jLabel2))
-                    .addComponent(txtNome)
-                    .addComponent(txtEmail)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel5)
-                            .addComponent(txtDtNasc, javax.swing.GroupLayout.PREFERRED_SIZE, 191, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(jLabel8)
+                            .addComponent(jLabel7)
+                            .addComponent(jLabel4)
+                            .addComponent(txtNome)
+                            .addComponent(txtEmail)
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                                .addComponent(jLabel6)
-                                .addGap(59, 59, 59))
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                                .addComponent(chkAtivo)
-                                .addGap(71, 71, 71))))
-                    .addComponent(txtSenha)
-                    .addComponent(txtRSenha))
-                .addContainerGap(28, Short.MAX_VALUE))
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel5)
+                                    .addComponent(txtDtNasc, javax.swing.GroupLayout.PREFERRED_SIZE, 191, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 254, Short.MAX_VALUE)
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                                        .addComponent(jLabel6)
+                                        .addGap(59, 59, 59))
+                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                                        .addComponent(chkAtivo)
+                                        .addGap(71, 71, 71))))
+                            .addComponent(txtSenha)
+                            .addComponent(txtRSenha)
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addComponent(jLabel1)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jLabel2)))
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(jLabel3)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 120, Short.MAX_VALUE)
+                        .addComponent(lbFoto, javax.swing.GroupLayout.PREFERRED_SIZE, 142, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(btEscolherImagem)
+                        .addGap(141, 141, 141))))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -150,8 +180,19 @@ public class FRCadUsu extends javax.swing.JDialog {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addGap(18, 18, 18)
-                .addComponent(jLabel3)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jLabel3))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(lbFoto, javax.swing.GroupLayout.PREFERRED_SIZE, 136, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addGap(53, 53, 53)
+                                .addComponent(btEscolherImagem)))
+                        .addGap(0, 27, Short.MAX_VALUE)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(txtNome, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
@@ -174,7 +215,7 @@ public class FRCadUsu extends javax.swing.JDialog {
                 .addComponent(jLabel8)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(txtRSenha, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 15, Short.MAX_VALUE)
+                .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btCancelar)
                     .addComponent(btSalvar))
@@ -200,6 +241,11 @@ public class FRCadUsu extends javax.swing.JDialog {
     }//GEN-LAST:event_btCancelarMouseClicked
 
     private boolean verificarCampos(){
+        if(lbFoto.getIcon() == null){
+            JOptionPane.showMessageDialog(null,"Campo 'Foto' em branco");
+            return false;  
+        } 
+                
         if(txtNome.getText().equals("")){
             JOptionPane.showMessageDialog(null,"Campo 'Nome' em branco");
             return false;
@@ -248,14 +294,37 @@ public class FRCadUsu extends javax.swing.JDialog {
         if(!verificarCampos()){
             return;
         }
-
+        
         UsuarioController controller = new UsuarioController();
         String senha = new String(txtSenha.getPassword());
         if(controller.adicionarUsuario(txtNome.getText(), txtEmail.getText(), senha,
-            txtDtNasc.getText(), Utils.salvarBoolean(chkAtivo.isSelected()))){
-        this.dispose();
+            txtDtNasc.getText(), Utils.salvarBoolean(chkAtivo.isSelected())
+            ,lbFoto.getIcon())){
+            this.dispose();
         };
     }//GEN-LAST:event_btSalvarMouseClicked
+
+    
+    private void btEscolherImagemMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btEscolherImagemMouseClicked
+        JFileChooser fileChooser = new JFileChooser();
+        fileChooser.setDialogTitle("Escolha um arquivo");
+        
+        int returnValue = fileChooser.showOpenDialog(null);
+
+        if (returnValue == JFileChooser.APPROVE_OPTION) {
+            File arquivo = fileChooser.getSelectedFile();
+            Icon icon = Utils.fileParaIcon(arquivo);
+            
+            ImageIcon iconRedimensionado = Utils.redimensionarIcon(
+                    icon, 140, 140);
+            
+            lbFoto.setIcon(iconRedimensionado);
+        }
+    }//GEN-LAST:event_btEscolherImagemMouseClicked
+
+    private void btSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btSalvarActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btSalvarActionPerformed
 
     /**
      * @param args the command line arguments
@@ -302,6 +371,7 @@ public class FRCadUsu extends javax.swing.JDialog {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btCancelar;
+    private javax.swing.JButton btEscolherImagem;
     private javax.swing.JButton btSalvar;
     private javax.swing.JCheckBox chkAtivo;
     private javax.swing.JLabel jLabel1;
@@ -313,6 +383,7 @@ public class FRCadUsu extends javax.swing.JDialog {
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JLabel lbFoto;
     private javax.swing.JTextField txtDtNasc;
     private javax.swing.JTextField txtEmail;
     private javax.swing.JTextField txtNome;
