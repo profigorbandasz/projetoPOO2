@@ -3,13 +3,15 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/s.lucas/Documents/GitHub/projetoPOO2/ProjetoAula/ProjetoAula/src/br/ulbra/utils/Utils.java</file>
-            <file>file:/C:/Users/s.lucas/Documents/GitHub/projetoPOO2/ProjetoAula/ProjetoAula/src/br/ulbra/view/FRCadUsu.java</file>
-            <file>file:/C:/Users/s.lucas/Documents/GitHub/projetoPOO2/ProjetoAula/ProjetoAula/src/br/ulbra/controller/UsuarioController.java</file>
-            <file>file:/C:/Users/s.lucas/Documents/GitHub/projetoPOO2/ProjetoAula/ProjetoAula/src/br/ulbra/view/FRConUsu.java</file>
-            <file>file:/C:/Users/s.lucas/Documents/GitHub/projetoPOO2/ProjetoAula/ProjetoAula/src/br/ulbra/model/UsuarioDAO.java</file>
-            <file>file:/C:/Users/s.lucas/Documents/GitHub/projetoPOO2/ProjetoAula/ProjetoAula/src/br/ulbra/view/FRUPDUsu.java</file>
-            <file>file:/C:/Users/s.lucas/Documents/GitHub/projetoPOO2/ProjetoAula/ProjetoAula/src/br/ulbra/model/Usuario.java</file>
+            <file>file:/C:/Users/iband/OneDrive%20-%20Universidade%20Luterana%20do%20Brasil/Área%20de%20Trabalho/Git/projetoPOO2/ProjetoAula/ProjetoAula/src/br/ulbra/view/FRMenu.java</file>
+            <file>file:/C:/Users/iband/OneDrive%20-%20Universidade%20Luterana%20do%20Brasil/Área%20de%20Trabalho/Git/projetoPOO2/ProjetoAula/ProjetoAula/src/br/ulbra/model/Cliente.java</file>
+            <file>file:/C:/Users/iband/OneDrive%20-%20Universidade%20Luterana%20do%20Brasil/Área%20de%20Trabalho/Git/projetoPOO2/ProjetoAula/ProjetoAula/src/br/ulbra/model/Usuario.java</file>
+            <file>file:/C:/Users/iband/OneDrive%20-%20Universidade%20Luterana%20do%20Brasil/Área%20de%20Trabalho/Git/projetoPOO2/ProjetoAula/ProjetoAula/src/br/ulbra/model/UsuarioDAO.java</file>
+            <file>file:/C:/Users/iband/OneDrive%20-%20Universidade%20Luterana%20do%20Brasil/Área%20de%20Trabalho/Git/projetoPOO2/ProjetoAula/ProjetoAula/src/br/ulbra/model/Pessoa.java</file>
+            <file>file:/C:/Users/iband/OneDrive%20-%20Universidade%20Luterana%20do%20Brasil/Área%20de%20Trabalho/Git/projetoPOO2/ProjetoAula/ProjetoAula/src/br/ulbra/view/FRCadUsu.java</file>
+            <file>file:/C:/Users/iband/OneDrive%20-%20Universidade%20Luterana%20do%20Brasil/Área%20de%20Trabalho/Git/projetoPOO2/ProjetoAula/ProjetoAula/src/br/ulbra/view/FRVideo.java</file>
+            <file>file:/C:/Users/iband/OneDrive%20-%20Universidade%20Luterana%20do%20Brasil/Área%20de%20Trabalho/Git/projetoPOO2/ProjetoAula/ProjetoAula/src/br/ulbra/view/FRConUsu.java</file>
+            <file>file:/C:/Users/iband/OneDrive%20-%20Universidade%20Luterana%20do%20Brasil/Área%20de%20Trabalho/Git/projetoPOO2/ProjetoAula/ProjetoAula/src/br/ulbra/utils/Utils.java</file>
         </group>
     </open-files>
 </project-private>

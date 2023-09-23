@@ -21,7 +21,7 @@ import javax.swing.JOptionPane;
 public class FRUPDUsu extends javax.swing.JDialog {
     private int pkUsuario;
     
-    public void setPkUsuario(int pk){
+    public void setPk(int pk){
         this.pkUsuario = pk;
     }
     /**
@@ -324,13 +324,13 @@ public class FRUPDUsu extends javax.swing.JDialog {
         UsuarioController controller = new UsuarioController();
         String senha = new String(txtSenha.getPassword());
         Usuario usuario = new Usuario();
-        usuario.setPkUsuario(pkUsuario);
-        usuario.setNomeUsu(txtNome.getText());
-        usuario.setEmailUsu(txtEmail.getText());
-        usuario.setDataNascUsu(txtDataNascimento.getText());
-        usuario.setAtivoUsu(Utils.salvarBoolean(chkAtivo.isSelected()));
-        usuario.setSenhaUsu(senha);
-        usuario.setImagemUsu(lbFoto.getIcon());
+        usuario.setPk(pkUsuario);
+        usuario.setNome(txtNome.getText());
+        usuario.setEmail(txtEmail.getText());
+        usuario.setDataNasc(txtDataNascimento.getText());
+        usuario.setAtivo(Utils.salvarBoolean(chkAtivo.isSelected()));
+        usuario.setSenha(senha);
+        usuario.setImagem(lbFoto.getIcon());
         if(controller.alterarUsuario(usuario)){
             this.dispose();
         };
@@ -375,15 +375,15 @@ public class FRUPDUsu extends javax.swing.JDialog {
         UsuarioController controller = new UsuarioController();
         Usuario usu = controller.readForPk(pkUsuario);
        
-        String codigo = String.valueOf(usu.getPkUsuario());
+        String codigo = String.valueOf(usu.getPk());
         txtCodigo.setText(codigo);
-        txtNome.setText(usu.getNomeUsu());
-        txtEmail.setText(usu.getEmailUsu());
-        txtDataNascimento.setText(usu.getDataNascUsu());
-        txtSenha.setText(usu.getSenhaUsu());
-        txtRSenha.setText(usu.getSenhaUsu());
-        chkAtivo.setSelected(usu.isAtivoUsu() == 1);
-        lbFoto.setIcon(usu.getImagemUsu());
+        txtNome.setText(usu.getNome());
+        txtEmail.setText(usu.getEmail());
+        txtDataNascimento.setText(usu.getDataNasc());
+        txtSenha.setText(usu.getSenha());
+        txtRSenha.setText(usu.getSenha());
+        chkAtivo.setSelected(usu.isAtivo() == 1);
+        lbFoto.setIcon(usu.getImagem());
     }
     
     private void formWindowActivated(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowActivated
