@@ -6,8 +6,8 @@
 package br.ulbra.view;
 
 import br.ulbra.controller.UsuarioController;
+import br.ulbra.model.Usuario;
 import br.ulbra.utils.Utils;
-import java.awt.Image;
 import java.io.File;
 import javax.swing.Icon;
 import javax.swing.ImageIcon;
@@ -297,9 +297,14 @@ public class FRCadUsu extends javax.swing.JDialog {
         
         UsuarioController controller = new UsuarioController();
         String senha = new String(txtSenha.getPassword());
-        if(controller.adicionarUsuario(txtNome.getText(), txtEmail.getText(), senha,
-            txtDtNasc.getText(), Utils.salvarBoolean(chkAtivo.isSelected())
-            ,lbFoto.getIcon())){
+        Usuario usu = new Usuario();
+        usu.setNomeUsu(txtNome.getText());
+        usu.setEmailUsu(txtEmail.getText());
+        usu.setDataNascUsu(txtDtNasc.getText());
+        usu.setSenhaUsu(senha);
+        usu.setAtivoUsu(Utils.salvarBoolean(chkAtivo.isSelected()));
+        usu.setImagemUsu(lbFoto.getIcon());
+        if(controller.adicionarUsuario(usu)){
             this.dispose();
         };
     }//GEN-LAST:event_btSalvarMouseClicked

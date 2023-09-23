@@ -63,12 +63,15 @@ public class FRUPDUsu extends javax.swing.JDialog {
         txtRSenha = new javax.swing.JPasswordField();
         jLabel9 = new javax.swing.JLabel();
         lbFoto = new javax.swing.JLabel();
-        jButton1 = new javax.swing.JButton();
+        btEscolherImagem = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         addWindowListener(new java.awt.event.WindowAdapter() {
             public void windowActivated(java.awt.event.WindowEvent evt) {
                 formWindowActivated(evt);
+            }
+            public void windowOpened(java.awt.event.WindowEvent evt) {
+                formWindowOpened(evt);
             }
         });
 
@@ -141,10 +144,10 @@ public class FRUPDUsu extends javax.swing.JDialog {
         lbFoto.setBackground(new java.awt.Color(255, 255, 255));
         lbFoto.setForeground(new java.awt.Color(255, 255, 255));
 
-        jButton1.setText("Escolher imagem");
-        jButton1.addMouseListener(new java.awt.event.MouseAdapter() {
+        btEscolherImagem.setText("Escolher imagem");
+        btEscolherImagem.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jButton1MouseClicked(evt);
+                btEscolherImagemMouseClicked(evt);
             }
         });
 
@@ -192,7 +195,7 @@ public class FRUPDUsu extends javax.swing.JDialog {
                         .addGap(86, 86, 86)
                         .addComponent(lbFoto, javax.swing.GroupLayout.PREFERRED_SIZE, 142, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jButton1))
+                        .addComponent(btEscolherImagem))
                     .addComponent(jLabel3)
                     .addComponent(txtCodigo, javax.swing.GroupLayout.PREFERRED_SIZE, 107, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(21, 21, 21))
@@ -210,7 +213,7 @@ public class FRUPDUsu extends javax.swing.JDialog {
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel8, javax.swing.GroupLayout.Alignment.TRAILING)
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                                .addComponent(jButton1)
+                                .addComponent(btEscolherImagem)
                                 .addGap(57, 57, 57))))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -350,12 +353,13 @@ public class FRUPDUsu extends javax.swing.JDialog {
         this.dispose();
     }//GEN-LAST:event_btVoltarMouseClicked
 
-    private void jButton1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton1MouseClicked
+    private void btEscolherImagemMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btEscolherImagemMouseClicked
+        lbFoto.setIcon(null);
         JFileChooser fileChooser = new JFileChooser();
         fileChooser.setDialogTitle("Escolha um arquivo");
 
         int returnValue = fileChooser.showOpenDialog(null);
-
+        
         if (returnValue == JFileChooser.APPROVE_OPTION) {
             File arquivo = fileChooser.getSelectedFile();
             Icon icon = Utils.fileParaIcon(arquivo);
@@ -364,9 +368,10 @@ public class FRUPDUsu extends javax.swing.JDialog {
 
             lbFoto.setIcon(iconRedimensionado);
         }
-    }//GEN-LAST:event_jButton1MouseClicked
+        
+    }//GEN-LAST:event_btEscolherImagemMouseClicked
 
-    private void formWindowActivated(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowActivated
+    public void carregarUsuario(){
         UsuarioController controller = new UsuarioController();
         Usuario usu = controller.readForPk(pkUsuario);
        
@@ -379,7 +384,15 @@ public class FRUPDUsu extends javax.swing.JDialog {
         txtRSenha.setText(usu.getSenhaUsu());
         chkAtivo.setSelected(usu.isAtivoUsu() == 1);
         lbFoto.setIcon(usu.getImagemUsu());
+    }
+    
+    private void formWindowActivated(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowActivated
+        
     }//GEN-LAST:event_formWindowActivated
+
+    private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
+        // TODO add your handling code here:
+    }//GEN-LAST:event_formWindowOpened
 
     /**
      * @param args the command line arguments
@@ -426,10 +439,10 @@ public class FRUPDUsu extends javax.swing.JDialog {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btAlterar;
+    private javax.swing.JButton btEscolherImagem;
     private javax.swing.JButton btExcluir;
     private javax.swing.JButton btVoltar;
     private javax.swing.JCheckBox chkAtivo;
-    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
