@@ -181,10 +181,10 @@ public class FRConUsu extends javax.swing.JDialog {
         UsuarioController controller = new UsuarioController();
         for(Usuario usu : controller.readForDesc(
                 cbFiltro.getSelectedIndex(), txtFiltro.getText())){
-            Object[] linha = {usu.getPkUsuario()
-                    , usu.getNomeUsu()
-                    , usu.getEmailUsu()
-                    , usu.getDataNascUsu()
+            Object[] linha = {usu.getPk()
+                    , usu.getNome()
+                    , usu.getEmail()
+                    , usu.getDataNasc()
                     , usu.ativoToString()};
             modelo.addRow(linha);
         }
