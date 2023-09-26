@@ -11,84 +11,30 @@ import javax.swing.Icon;
  *
  * @author Administrador
  */
-public class Usuario {
-    private int pkUsuario;
-    private String nomeUsu;
-    private String emailUsu;
-    private String dataNascUsu;
-    private int ativoUsu;
-    private String senhaUsu;
-    private Icon imagemUsu;
-    
-    public int getPkUsuario() {
-        return pkUsuario;
+public class Usuario extends Pessoa {
+    private String dataNasc;
+    private String senha;
+        
+    public String getSenha() {
+        return senha;
     }
 
-    public void setPkUsuario(int pkUsuario) {
-        this.pkUsuario = pkUsuario;
+    public void setSenha(String senha) {
+        this.senha = senha;
     }
 
-    public String getNomeUsu() {
-        return nomeUsu;
+    public String getDataNasc() {
+        return dataNasc;
     }
 
-    public void setNomeUsu(String nomeUsu) {
-        this.nomeUsu = nomeUsu;
-    }
-
-    public String getEmailUsu() {
-        return emailUsu;
-    }
-
-    public void setEmailUsu(String emailUsu) {
-        this.emailUsu = emailUsu;
-    }
-
-   
-
-    public String getSenhaUsu() {
-        return senhaUsu;
-    }
-
-    public void setSenhaUsu(String senhaUsu) {
-        this.senhaUsu = senhaUsu;
-    }
-
-    public String getDataNascUsu() {
-        return dataNascUsu;
-    }
-
-    public void setDataNascUsu(String dataNasUsu) {
-        this.dataNascUsu = dataNasUsu;
-    }
-
-    public int isAtivoUsu() {
-        return ativoUsu;
-    }
-
-    public void setAtivoUsu(int ativoUsu) {
-        this.ativoUsu = ativoUsu;
-    }
-    
-    public String ativoToString(){
-        if (this.ativoUsu == 1)
-            return "Ativo";
-        else
-            return "Inativo";
-    }
-    
-    public Icon getImagemUsu(){
-        return this.imagemUsu;
-    }
-    
-    public void setImagemUsu(Icon imagem){
-        this.imagemUsu = imagem;
+    public void setDataNasc(String dataNasc) {
+        this.dataNasc = dataNasc;
     }
 
     @Override
     public String toString() {
-        return "Usuario{" + "pkUsuario=" + pkUsuario + ", nomeUsu=" + nomeUsu 
-                + ", emailUsu=" + emailUsu + ", dataNascUsu=" + dataNascUsu 
-                + ", ativoUsu=" + ativoUsu + ", senhaUsu=" + senhaUsu + '}';
+        return "Usuario{" + "pkUsuario=" + getPk() + ", nomeUsu=" + getNome() 
+                + ", emailUsu=" + getEmail() + ", dataNascUsu=" + dataNasc 
+                + ", ativoUsu=" + isAtivo() + ", senhaUsu=" + senha + '}';
     }
 }
