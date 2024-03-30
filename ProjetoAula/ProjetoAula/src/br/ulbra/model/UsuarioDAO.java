@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package br.ulbra.model;
 
 import br.ulbra.utils.Utils;
@@ -21,28 +16,28 @@ import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 
-/**
- *
- * @author Administrador
- */
 public class UsuarioDAO {
-    private GerenciadorConexao gerenciador;
-    public UsuarioDAO(){
-        this.gerenciador = GerenciadorConexao.getInstancia();
-    }
     
     public boolean autenticar(String email, String senha){
         String sql = "SELECT * from TBUSUARIO WHERE emailUsu = ? and senhaUsu = ? and ativoUsu = 1";
+        
+        GerenciadorConexao gerenciador = new GerenciadorConexao();
+        Connection con = gerenciador.getConexao();
+        PreparedStatement stmt = null;
+        ResultSet rs = null;
+        
         try {
-            PreparedStatement stmt = gerenciador.getConexao().prepareStatement(sql);
+            stmt = con.prepareStatement(sql);
             stmt.setString(1, email);
             stmt.setString(2, senha);
-            ResultSet rs = stmt.executeQuery();
+            rs = stmt.executeQuery();
             if (rs.next()){
                 return true;
             }           
         } catch (SQLException e) {
             JOptionPane.showMessageDialog(null, e.getMessage());
+        } finally {
+            gerenciador.closeConnection(stmt, rs);
         }
         return false;
     }
@@ -51,10 +46,15 @@ public class UsuarioDAO {
         String sql = "INSERT into TBUSUARIO (nomeUsu, emailUsu, "
                 + "senhaUsu, dataNascUsu, ativoUsu, imagemUsu) "
                 + "VALUES (?,?,?,?,?, ?)";
+        
+        GerenciadorConexao gerenciador = new GerenciadorConexao();
+        Connection con = gerenciador.getConexao();
+        PreparedStatement stmt = null;
+        
         try {
             byte[] iconBytes = Utils.iconToBytes(u.getImagem());
             
-            PreparedStatement stmt = gerenciador.getConexao().prepareStatement(sql);
+            stmt = con.prepareStatement(sql);
             stmt.setString(1, u.getNome()); 
             stmt.setString(2, u.getEmail());
             stmt.setString(3, u.getSenha());
@@ -64,11 +64,12 @@ public class UsuarioDAO {
             stmt.executeUpdate();
             JOptionPane.showMessageDialog(null,"Usuário: " + u.getNome() + " inserido com sucesso!");
             return true;
-        } catch (SQLException e) {
+        } catch (SQLException | IOException e) {
             JOptionPane.showMessageDialog(null, "ERRO: " + e.getMessage());
-        } catch (IOException e){
-            JOptionPane.showMessageDialog(null, "ERRO: " + e.getMessage());
+        } finally {
+            gerenciador.closeConnection(stmt);
         }
+        
         return false;
     }
     
@@ -76,6 +77,7 @@ public class UsuarioDAO {
         String sql = "SELECT * FROM tbusuario";
         List<Usuario> usuarios = new ArrayList<>();
 
+        GerenciadorConexao gerenciador = new GerenciadorConexao();
         Connection con = gerenciador.getConexao();
         PreparedStatement stmt = null;
         ResultSet rs = null;
@@ -100,7 +102,7 @@ public class UsuarioDAO {
         } catch (SQLException ex) {
             Logger.getLogger(UsuarioDAO.class.getName()).log(Level.SEVERE, null, ex);
         } finally {
-            GerenciadorConexao.closeConnection(con, stmt, rs);
+            gerenciador.closeConnection(stmt, rs);
         }
 
         return usuarios;
@@ -113,7 +115,8 @@ public class UsuarioDAO {
             sql = "SELECT * FROM tbusuario WHERE nomeusu LIKE ?";
         else
             sql = "SELECT * FROM tbusuario WHERE emailusu LIKE ?";
-        GerenciadorConexao gerenciador = GerenciadorConexao.getInstancia();
+        
+        GerenciadorConexao gerenciador = new GerenciadorConexao();
         Connection con = gerenciador.getConexao();
         PreparedStatement stmt = null;
         ResultSet rs = null;
@@ -144,7 +147,7 @@ public class UsuarioDAO {
         } catch (SQLException ex) {
             Logger.getLogger(UsuarioDAO.class.getName()).log(Level.SEVERE, null, ex);
         } finally {
-            GerenciadorConexao.closeConnection(con, stmt, rs);
+            gerenciador.closeConnection(stmt, rs);
         }
 
         return usuarios;
@@ -152,7 +155,7 @@ public class UsuarioDAO {
     
     public Usuario readForPk(int pk) {
         String sql = "SELECT * FROM tbusuario WHERE pkusuario = ?";
-        GerenciadorConexao gerenciador = GerenciadorConexao.getInstancia();
+        GerenciadorConexao gerenciador = new GerenciadorConexao();
         Connection con = gerenciador.getConexao();
         PreparedStatement stmt = null;
         ResultSet rs = null;
@@ -184,14 +187,14 @@ public class UsuarioDAO {
         } catch (IOException e){
             JOptionPane.showMessageDialog(null, "ERRO: " + e.getMessage());
         }finally {
-            GerenciadorConexao.closeConnection(con, stmt, rs);
+            gerenciador.closeConnection(stmt, rs);
         }
 
         return usuario;
     }
     
     public boolean alterarUsuario(Usuario u) {
-        GerenciadorConexao gerenciador = GerenciadorConexao.getInstancia();
+        GerenciadorConexao gerenciador = new GerenciadorConexao();
         Connection con = gerenciador.getConexao();
         PreparedStatement stmt = null;
 
@@ -219,13 +222,13 @@ public class UsuarioDAO {
         } catch (IOException e){
             JOptionPane.showMessageDialog(null, "ERRO: " + e.getMessage());
         } finally {
-            GerenciadorConexao.closeConnection(con, stmt);
+            gerenciador.closeConnection(stmt);
         }
         return false;
     }
     
     public boolean excluirUsuario(int pkUsuario) {
-        GerenciadorConexao gerenciador = GerenciadorConexao.getInstancia();
+        GerenciadorConexao gerenciador = new GerenciadorConexao();
         Connection con = gerenciador.getConexao();
         PreparedStatement stmt = null;
 
@@ -241,7 +244,7 @@ public class UsuarioDAO {
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(null, "Erro ao excluir: " + ex);
         } finally {
-            GerenciadorConexao.closeConnection(con, stmt);
+            gerenciador.closeConnection(stmt);
         }
         return false;
     }
