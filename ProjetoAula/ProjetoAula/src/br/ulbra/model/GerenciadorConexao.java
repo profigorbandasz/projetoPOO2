@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package br.ulbra.model;
 
 import java.sql.Connection;
@@ -14,24 +9,21 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 
-/**
- *
- * @author Administrador
- */
 public class GerenciadorConexao {
-    private static final String URL = "jdbc:mysql://localhost:3306/dbprojeto";
-    private static final String USER = "root";
-    private static final String PASSWORD = "root";
-    private static GerenciadorConexao instancia;
+    private static final String URL = "jdbc:mysql://127.0.0.1:3306/dbprojeto";
+    private static final String USER = "admin";
+    private static final String PASSWORD = "admin";
+   // private static GerenciadorConexao instancia;
     private Connection conexao;
-    private GerenciadorConexao() {
+    
+    public GerenciadorConexao() {
         try {
             conexao = DriverManager.getConnection(URL, USER, PASSWORD);
         } catch (SQLException e) {
             JOptionPane.showMessageDialog(null,e.getMessage().toString());
         }
     }
-    
+    /*
     public static synchronized GerenciadorConexao getInstancia() {
         try {
             if ((instancia == null) || (instancia.conexao.isClosed())) {
@@ -41,47 +33,41 @@ public class GerenciadorConexao {
             Logger.getLogger(GerenciadorConexao.class.getName()).log(Level.SEVERE, null, ex);
         }
         return instancia;
-    }
+    }*/
     
     public Connection getConexao() {
         return conexao;
     }
     
-    public static void closeConnection(Connection con) {
+    public void closeConnection() {
         try {
-            if (con != null) {
-                con.close();
+            if (conexao != null) {
+                conexao.close();
             }
         } catch (SQLException ex) {
             Logger.getLogger(GerenciadorConexao.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 
-    public static void closeConnection(Connection con, PreparedStatement stmt) {
-
-        closeConnection(con);
+    public void closeConnection(PreparedStatement stmt) {
+        closeConnection();
 
         try {
-
             if (stmt != null) {
                 stmt.close();
             }
-
         } catch (SQLException ex) {
             Logger.getLogger(GerenciadorConexao.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
     
-    public static void closeConnection(Connection con, PreparedStatement stmt, ResultSet rs) {
-
-        closeConnection(con, stmt);
+    public void closeConnection(PreparedStatement stmt, ResultSet rs) {
+        closeConnection(stmt);
 
         try {
-
             if (rs != null) {
                 rs.close();
             }
-
         } catch (SQLException ex) {
             Logger.getLogger(GerenciadorConexao.class.getName()).log(Level.SEVERE, null, ex);
         }
