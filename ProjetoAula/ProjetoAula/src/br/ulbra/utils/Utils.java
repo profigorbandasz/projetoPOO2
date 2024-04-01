@@ -9,14 +9,40 @@ import java.io.IOException;
 import javax.imageio.ImageIO;
 import javax.swing.Icon;
 import javax.swing.ImageIcon;
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
 
 public class Utils {
-    public static int salvarBoolean(boolean valor){
+    public static String calcularMD5(String senha){
+        String hashMD5 = "";
+        try {
+            // Crie uma instância do MessageDigest com o algoritmo MD5
+            MessageDigest md = MessageDigest.getInstance("MD5");
+            
+            // Atualize o digest com os bytes do texto
+            md.update(senha.getBytes());
+            
+            // Calcule o hash MD5
+            byte[] digest = md.digest();
+            
+            // Converta o hash de bytes para uma representação hexadecimal
+            StringBuilder sb = new StringBuilder();
+            for (byte b : digest) {
+                sb.append(String.format("%02x", b));
+            }
+            hashMD5 = sb.toString();  
+        } catch (NoSuchAlgorithmException e) {
+            System.err.println("Algoritmo MD5 não encontrado");
+        }
+        
+        return hashMD5;
+    }
+    /*public static int salvarBoolean(boolean valor){
         if (valor = true)
             return 1;
         else           
             return 0;
-    }
+    }*/
     
     public static Icon fileParaIcon(File file) {
         ImageIcon icon = new ImageIcon(file.getAbsolutePath());

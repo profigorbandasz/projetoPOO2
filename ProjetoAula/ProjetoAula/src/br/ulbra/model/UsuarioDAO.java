@@ -59,7 +59,7 @@ public class UsuarioDAO {
             stmt.setString(2, u.getEmail());
             stmt.setString(3, u.getSenha());
             stmt.setString(4, u.getDataNasc());
-            stmt.setInt(5, u.isAtivo());
+            stmt.setBoolean(5, u.isAtivo());
             stmt.setBytes(6, iconBytes);
             stmt.executeUpdate();
             JOptionPane.showMessageDialog(null,"Usuário: " + u.getNome() + " inserido com sucesso!");
@@ -94,7 +94,7 @@ public class UsuarioDAO {
                 usuario.setEmail(rs.getString("emailusu"));
                 usuario.setSenha(rs.getString("senhausu"));
                 usuario.setDataNasc(rs.getString("datanascusu"));
-                usuario.setAtivo(rs.getInt("ativousu"));
+                usuario.setAtivo(rs.getBoolean("ativousu"));
                 
                 usuarios.add(usuario);
             }
@@ -140,7 +140,7 @@ public class UsuarioDAO {
                 usuario.setEmail(rs.getString("emailusu"));
                 usuario.setSenha(rs.getString("senhausu"));
                 usuario.setDataNasc(rs.getString("datanascusu"));
-                usuario.setAtivo(rs.getInt("ativousu"));
+                usuario.setAtivo(rs.getBoolean("ativousu"));
                 usuarios.add(usuario);
             }
 
@@ -173,7 +173,7 @@ public class UsuarioDAO {
                 usuario.setEmail(rs.getString("emailusu"));
                 usuario.setSenha(rs.getString("senhausu"));
                 usuario.setDataNasc(rs.getString("datanascusu"));
-                usuario.setAtivo(rs.getInt("ativousu"));
+                usuario.setAtivo(rs.getBoolean("ativousu"));
                 
                 byte[] bytes = rs.getBytes("imagemUsu");
                 ByteArrayInputStream bis = new ByteArrayInputStream(bytes);
@@ -208,7 +208,7 @@ public class UsuarioDAO {
             stmt.setString(2, u.getEmail());
             stmt.setString(3, u.getSenha());
             stmt.setString(4, u.getDataNasc());
-            stmt.setInt(5, u.isAtivo());
+            stmt.setBoolean(5, u.isAtivo());
             stmt.setBytes(6, iconBytes);
             stmt.setInt(7, u.getPk());
             

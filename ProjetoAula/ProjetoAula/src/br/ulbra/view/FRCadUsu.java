@@ -293,7 +293,7 @@ public class FRCadUsu extends javax.swing.JDialog {
         usu.setEmail(txtEmail.getText());
         usu.setDataNasc(txtDtNasc.getText());
         usu.setSenha(senha);
-        usu.setAtivo(Utils.salvarBoolean(chkAtivo.isSelected()));
+        usu.setAtivo(chkAtivo.isSelected());
         usu.setImagem(lbFoto.getIcon());
         if(controller.adicionarUsuario(usu)){
             this.dispose();

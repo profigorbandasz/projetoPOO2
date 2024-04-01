@@ -322,7 +322,7 @@ public class FRUPDUsu extends javax.swing.JDialog {
         usuario.setNome(txtNome.getText());
         usuario.setEmail(txtEmail.getText());
         usuario.setDataNasc(txtDataNascimento.getText());
-        usuario.setAtivo(Utils.salvarBoolean(chkAtivo.isSelected()));
+        usuario.setAtivo(chkAtivo.isSelected());
         usuario.setSenha(senha);
         usuario.setImagem(lbFoto.getIcon());
         if(controller.alterarUsuario(usuario)){
@@ -376,7 +376,7 @@ public class FRUPDUsu extends javax.swing.JDialog {
         txtDataNascimento.setText(usu.getDataNasc());
         txtSenha.setText(usu.getSenha());
         txtRSenha.setText(usu.getSenha());
-        chkAtivo.setSelected(usu.isAtivo() == 1);
+        chkAtivo.setSelected(usu.isAtivo());
         lbFoto.setIcon(usu.getImagem());
     }
     
