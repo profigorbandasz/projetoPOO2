@@ -6,9 +6,26 @@ public abstract class Pessoa {
     private int pk;
     private String nome;
     private String email;
-    private int ativo;
+    private boolean ativo;
     private Icon imagem;
     
+    public Pessoa(){};
+    
+    public Pessoa(int pk, String nome, String email, boolean ativo) {
+        this.pk = pk;
+        this.nome = nome;
+        this.email = email;
+        this.ativo = ativo;
+    }
+    
+    public Pessoa(int pk, String nome, String email, boolean ativo, Icon imagem) {
+        this.pk = pk;
+        this.nome = nome;
+        this.email = email;
+        this.ativo = ativo;
+        this.imagem = imagem;
+    }
+        
     public int getPk() {
         return pk;
     }
@@ -33,19 +50,12 @@ public abstract class Pessoa {
         this.email = email;
     }
     
-    public int isAtivo() {
+    public boolean isAtivo() {
         return ativo;
     }
 
-    public void setAtivo(int ativo) {
+    public void setAtivo(boolean ativo) {
         this.ativo = ativo;
-    }
-    
-    public String ativoToString(){
-        if (this.ativo == 1)
-            return "Ativo";
-        else
-            return "Inativo";
     }
     
     public Icon getImagem(){

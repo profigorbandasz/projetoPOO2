@@ -1,6 +1,7 @@
 package br.ulbra.view;
 
 import br.ulbra.controller.UsuarioController;
+import br.ulbra.utils.Utils;
 import java.awt.event.KeyEvent;
 
 public class FRAutentica extends javax.swing.JFrame {
@@ -117,12 +118,12 @@ public class FRAutentica extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
     
     private void logar(){
-       UsuarioController controller = new UsuarioController();
-        char[] senha = txtSenha.getPassword();
-                
-            
+        UsuarioController controller = new UsuarioController();
+        String senha = new String(txtSenha.getPassword());
         
-        if(controller.autenticar(txtEmail.getText(), new String(senha))){
+        String hash = Utils.calcularMD5(senha);
+        
+        if(controller.autenticar(txtEmail.getText(), hash)){
             this.dispose();
             new FRMenu().setVisible(true);
         } 
